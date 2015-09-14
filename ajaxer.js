@@ -15,11 +15,11 @@ var AjaxHandler = (function() {
   }
 
   AjaxHandler.prototype.callback = function(fn) {
-    this.request.onreadystatechange = function() {
+    this.request.onreadystatechange = (function() {
       if (this.request.readyState === 4 && this.request.status === 200) {
         fn(this.request.responseText);
       }
-    }
+    }).bind(this);
   }
 
   AjaxHandler.prototype.post = function(data) {
@@ -31,9 +31,11 @@ var AjaxHandler = (function() {
   }
 
   AjaxHandler.prototype.connect = function(style, data, destination) {
+    if (data) {
     var sendData = Object.keys(data).map(function(k) {
         return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
       }).join("&");
+    }
     if (destination === undefined) {
       destination = this.destination;
     }
@@ -47,7 +49,7 @@ var AjaxHandler = (function() {
       this.request.setRequestHeader("Connection", "close");
     }
     this.request.open(style, destination, true);
-    this.send(sendData);
+    this.request.send(sendData);
   }
 
   return AjaxHandler;
