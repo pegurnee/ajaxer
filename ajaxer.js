@@ -2,7 +2,7 @@ var AjaxHandler = (function () {
 
   function AjaxHandler() {
     this.request = new XMLHttpRequest();
-    this.outgoingData = [];
+    this.outgoingData = {};
   }
 
   AjaxHandler.prototype.setURL(theUrl) {
@@ -18,14 +18,18 @@ var AjaxHandler = (function () {
   }
 
   AjaxHandler.prototype.post() {
-    connect("POST", this.request);
+    connect("POST", this);
   }
 
   AjaxHandler.prototype.get() {
-    connect("GET", this.request);
+    connect("GET", this);
   }
 
-  function connect(theRequest) {
+  function connect(style, ajaxHandler) {
+    if (style === "GET") {
+      
+    }
+    ajaxHandler.request.open(style, ajaxHandler.destination, true);
 
   }
 
