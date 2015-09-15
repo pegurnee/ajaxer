@@ -6,10 +6,13 @@
   </head>
   <body>
     <script>
-    var aj = new AjaxHandler('dest.txt', window.alert);
+    var aj = new AjaxHandler('ajaj.php', window.alert);
     aj.callback(window.alert);
-    aj.get();
+    //aj.get();
     document.write('now here')
+    var some = {name: 'eddie',ln: 'gurnee'};
+    //aj.url('ajaj.php');
+    aj.post(some);
     </script>
   </body>
 </html>

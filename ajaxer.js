@@ -30,25 +30,25 @@ var AjaxHandler = (function() {
     this.connect("GET", data, this.destination);
   }
 
-  AjaxHandler.prototype.connect = function(style, data, destination) {
+  AjaxHandler.prototype.connect = function(style, data, destination = this.destination) {
     if (data) {
     var sendData = Object.keys(data).map(function(k) {
         return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
       }).join("&");
     }
-    if (destination === undefined) {
-      destination = this.destination;
-    }
     if (style === "GET") {
       var urlParams = "?" + sendData;
       destination += urlParams;
       sendData = "";
-    } else {
+    }
+    
+    this.request.open(style, destination, true);
+
+    if (style === "POST") {
       this.request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       this.request.setRequestHeader("Content-length", sendData.length);
       this.request.setRequestHeader("Connection", "close");
     }
-    this.request.open(style, destination, true);
     this.request.send(sendData);
   }
 
