@@ -1,56 +1,49 @@
-var AjaxHandler = (function() {
-
-  function AjaxHandler(url = "", callBackFunction = "") {
-    this.request = new XMLHttpRequest();
-    this.destination = url;
-    this.callBackFunction = callBackFunction;
-  }
-
-  AjaxHandler.prototype.url = function(theUrl) {
-    if (theUrl === undefined) {
-      return this.destination;
-    } else {
-      this.destination = theUrl;
-    }
-  }
-
-  AjaxHandler.prototype.callback = function(fn) {
-    this.request.onreadystatechange = (function() {
-      if (this.request.readyState === 4 && this.request.status === 200) {
-        fn(this.request.responseText);
+;
+(function() {
+  var
+    prepareData = function(data) {
+      if (!data) {
+        return;
       }
-    }).bind(this);
-  }
-
-  AjaxHandler.prototype.post = function(data) {
-    this.connect("POST", data, this.destination);
-  }
-
-  AjaxHandler.prototype.get = function(data) {
-    this.connect("GET", data, this.destination);
-  }
-
-  AjaxHandler.prototype.connect = function(style, data, destination = this.destination) {
-    if (data) {
-    var sendData = Object.keys(data).map(function(k) {
+      return Object.keys(data).map(function(k) {
         return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
       }).join("&");
-    }
-    if (style === "GET") {
-      var urlParams = "?" + sendData;
-      destination += urlParams;
-      sendData = "";
-    }
-    
-    this.request.open(style, destination, true);
+    },
+    setCallback = function(fn, request) {
+      request.onreadystatechange = (function() {
+        if (request.readyState === 4 && request.status === 200) {
+          fn(request.responseText);
+        }
+      }).bind(request);
+    };
 
-    if (style === "POST") {
-      this.request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      this.request.setRequestHeader("Content-length", sendData.length);
-      this.request.setRequestHeader("Connection", "close");
-    }
-    this.request.send(sendData);
+  post = function(url, callback, data) {
+    this.connect("POST", url, callback, data);
+  }
+  
+  get = function(url, callback, data) {
+    this.connect("GET", url, callback, data);
   }
 
-  return AjaxHandler;
+  connect = function(style, url, callback, data) {
+    var request = new XMLHttpRequest(),
+      sendData = prepareData(data);
+
+    if (style === "GET") {
+      var urlParams = "?" + sendData;
+      url += urlParams;
+      sendData = "";
+    }
+
+    setCallback(callback, request);
+
+    request.open(style, url, true);
+
+    if (style === "POST") {
+      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      request.setRequestHeader("Content-length", sendData.length);
+      request.setRequestHeader("Connection", "close");
+    }
+    request.send(sendData);
+  }
 })();
