@@ -1,17 +1,17 @@
 ;
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
-         // AMD. Register as an anonymous module.
-         define(factory);
-     } else if (typeof exports === 'object') {
-         // Node. Does not work with strict CommonJS, but
-         // only CommonJS-like enviroments that support module.exports,
-         // like Node.
-         module.exports = factory();
-     } else {
-         // Browser globals (root is window)
-         root.ajax = factory(root);
-     }
+    // AMD. Register as an anonymous module.
+    define(factory);
+  } else if (typeof exports === 'object') {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like enviroments that support module.exports,
+    // like Node.
+    module.exports = factory();
+  } else {
+    // Browser globals (root is window)
+    root.ajax = factory(root);
+  }
 }(this, function() {
   var
     prepareData = function(data) {
@@ -33,7 +33,7 @@
       }).bind(request);
     };
 
-  var ajax = {
+  return {
     post: function(url, data, callback) {
       ajax.connect("POST", url, callback, data);
     },
@@ -63,17 +63,5 @@
       }
       request.send(sendData);
     }
-  }
-
-  if (!window.post) {
-    window.post = ajax.post;
-  }
-  if (!window.get) {
-    window.get = ajax.get;
-  }
-  if (!window.connect) {
-    window.connect = ajax.connect;
-  }
-  return ajax;
-  console.log('hello');
+  };
 }));
