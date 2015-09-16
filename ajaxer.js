@@ -1,16 +1,11 @@
 ;
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
     define(factory);
   } else if (typeof exports === 'object') {
-    // Node. Does not work with strict CommonJS, but
-    // only CommonJS-like enviroments that support module.exports,
-    // like Node.
     module.exports = factory();
   } else {
-    // Browser globals (root is window)
-    root.ajax = factory(root);
+    root.ajaxer = factory(root);
   }
 }(this, function() {
   var
@@ -43,11 +38,14 @@
     },
 
     connect: function(style, url, data, callback) {
+      if (style !== 'POST' || style !== 'GET') {
+        return;
+      }
       if (typeof data === "function" && typeof callback === "undefined") {
         callback = data;
         data = null;
       }
-      
+
       var request = new XMLHttpRequest(),
         sendData = prepareData(data);
 
