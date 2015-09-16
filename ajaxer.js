@@ -43,6 +43,11 @@
     },
 
     connect: function(style, url, data, callback) {
+      if (typeof data === "function" && typeof callback === "undefined") {
+        callback = data;
+        data = null;
+      }
+      
       var request = new XMLHttpRequest(),
         sendData = prepareData(data);
 
