@@ -1,6 +1,20 @@
+var require = require || null;
+
+if (require) {
+  XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
+  var chai = require("chai");
+  var sinon = require("sinon");
+  var ajaxer = require("../ajaxer.js");
+}
+
 chai.should();
 
 describe('ajaxer', function() {
+  var
+    xhr,
+    requests;
+
   beforeEach(function() {
     this.xhr = sinon.useFakeXMLHttpRequest();
 
