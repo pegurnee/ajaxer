@@ -30,15 +30,15 @@
 
   return {
     post: function(url, data, callback) {
-      ajax.connect("POST", url, callback, data);
+      this.connect("POST", url, data, callback);
     },
 
     get: function(url, data, callback) {
-      ajax.connect("GET", url, callback, data);
+      this.connect("GET", url, data, callback);
     },
 
     connect: function(style, url, data, callback) {
-      if (style !== 'POST' || style !== 'GET') {
+      if (style !== 'POST' && style !== 'GET') {
         return;
       }
       if (typeof data === "function" && typeof callback === "undefined") {
