@@ -18,7 +18,7 @@ describe('ajaxer', function() {
     'everything'.should.be.ok;
   });
 
-  it('should not send anything without connect method', function(done) {
+  it('should not send anything without connect method declared', function(done) {
     var data = "hello";
 
     ajaxer.connect('www.ajaxisabummer.com', function(response) {
@@ -30,7 +30,7 @@ describe('ajaxer', function() {
     this.requests.should.be.empty;
   });
 
-  it('GET destination should be pro', function(done) {
+  it('shoud make GET destination pro', function(done) {
     var data = {
       foo: 'bar'
     };
@@ -39,7 +39,8 @@ describe('ajaxer', function() {
       done();
     });
 
-    this.requests[0].open.url.should.be('www.fp.com?foo=bar');
+    this.requests[0].url.should.be.equal('www.fp.com?foo=bar');
+    done();
   });
 
 });
