@@ -10,7 +10,7 @@
 }(this, function() {
   var
     prepareData = function(data) {
-      if (typeof data !== "object") {
+      if (!data || typeof data !== "object") {
         return;
       }
       return Object.keys(data).map(function(k) {
