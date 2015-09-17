@@ -1,5 +1,7 @@
 # ajaxer
 
+![Build Status](https://travis-ci.org/power-cosmic/ajaxer.svg?branch=master)
+
 ## Overview
 
 This is a small library to enable some basic ajax calls.
