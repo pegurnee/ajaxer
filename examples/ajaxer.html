@@ -15,7 +15,9 @@
     aj.post(some);
 */
     var some = {name: 'eddie',ln: 'gurnee'};
-    ajax.post('ajaj.php', alert, some);
+    ajaxer.post('ajaj.php', some, alert);
+
+    ajaxer.get('moar_data.json', console.log);
     </script>
     <button>GET</button>
     <input type="text" name="key" /><button onclick="post(some)">POST</button>
