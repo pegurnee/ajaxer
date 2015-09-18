@@ -17,7 +17,7 @@
     var some = {name: 'eddie',ln: 'gurnee'};
     ajaxer.post('ajaj.php', some, alert);
 
-    ajaxer.get('moar_data.json', console.log);
+    ajaxer.get('moar_data.json', function(data) {console.log(data);});
     </script>
     <button>GET</button>
     <input type="text" name="key" /><button onclick="post(some)">POST</button>
