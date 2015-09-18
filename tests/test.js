@@ -5,7 +5,7 @@ if (require) {
 
   var chai = require("chai");
   var sinon = require("sinon");
-  var ajaxer = require("../ajaxer.js");
+  var ajaxer = require("../lib/ajaxer.js");
 }
 
 chai.should();
