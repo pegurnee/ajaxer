@@ -88,7 +88,7 @@ describe('ajaxer', function() {
     it('allows for only a callback to be declared', function() {
       var aintNoCallerBacker = sinon.spy();
       ajaxer.connect("POST", "www.loc.com", aintNoCallerBacker);
-      
+
       this.requests[0].respond(200);
 
       aintNoCallerBacker.calledOnce.should.be.true;
@@ -114,6 +114,21 @@ describe('ajaxer', function() {
     });
   });
 
+  describe('#get', function() {
+    it('should should make the request location awesome', function(done) {
+      var data = {
+        foo: 'bar'
+      };
+
+      ajaxer.get('www.fp.com', data, function(err, result) {
+        done();
+      });
+
+      this.requests[0].url.should.be.equal('www.fp.com?foo=bar');
+      done();
+    });
+  });
+
   it('should not send anything without connect method declared', function(done) {
     var data = "hello";
 
@@ -125,18 +140,4 @@ describe('ajaxer', function() {
 
     this.requests.should.be.empty;
   });
-
-  it('should make GET destination pro', function(done) {
-    var data = {
-      foo: 'bar'
-    };
-
-    ajaxer.get('www.fp.com', data, function(err, result) {
-      done();
-    });
-
-    this.requests[0].url.should.be.equal('www.fp.com?foo=bar');
-    done();
-  });
-
 });
