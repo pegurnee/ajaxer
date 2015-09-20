@@ -1,7 +1,7 @@
 # ajaxer
 
-![Build Status](https://travis-ci.org/power-cosmic/ajaxer.svg?branch=master)
-![Coverage Status](https://coveralls.io/repos/power-cosmic/ajaxer/badge.svg?branch=master&service=github)
+[![Build Status](https://travis-ci.org/power-cosmic/ajaxer.svg?branch=master)](https://travis-ci.org/power-cosmic/ajaxer)
+[![Coverage Status](https://coveralls.io/repos/power-cosmic/ajaxer/badge.svg?branch=master&service=github)](https://coveralls.io/github/power-cosmic/ajaxer?branch=master)
 
 ## Overview
 
