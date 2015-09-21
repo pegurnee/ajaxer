@@ -44,19 +44,19 @@ Probably going to try to get npm to work. No promises though.
 
 ## API
 
-### get (*url*, [*data*, [*callback*)
+### get (*url*, [*data*, [*callback*]])
 
 Perform an ajax GET request at the target `url`, optionally with the provided `data` (as an Object) and/or with a `callback` function that will operate on the response.
 
 **Note**: `data` or `callback` or both may be left empty if desired
 
-### post (*url*, [*data*, [*callback*)
+### post (*url*, [*data*, [*callback*]])
 
 Perform an ajax POST request at the target `url`, optionally with the provided `data` (as an Object) and/or with a `callback` function that will operate on the response.
 
 **Note**: `data` or `callback` or both may be left empty if desired
 
-### connect (*method*, *url*, [*data*, [*callback*)
+### connect (*method*, *url*, [*data*, [*callback*]])
 
 Perform an ajax request at the target `url`, optionally with the provided `data` (as an Object) and/or with a `callback` function that will operate on the response. The first parameter can be either the string `'POST'` or `'GET'`, nothing else can be accepted.
 
