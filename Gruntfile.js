@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+  require("load-grunt-tasks")(grunt);
 
   grunt.initConfig({
 
@@ -25,6 +26,7 @@ module.exports = function(grunt) {
         src: 'coverage/lcov.info'
       }
     },
+
     env: {
       coverage: {
         APP_DIR_FOR_CODE_COVERAGE: '../tests/coverage/instrument/lib/'
@@ -58,13 +60,6 @@ module.exports = function(grunt) {
       src: ['tests/*.js']
     }
   });
-
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-coveralls');
-  grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.loadNpmTasks('grunt-istanbul');
-  grunt.loadNpmTasks('grunt-env');
 
   grunt.registerTask('default', ['jshint']);
   grunt.registerTask('build', ['uglify']);
