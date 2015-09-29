@@ -53,6 +53,16 @@ module.exports = function(grunt) {
       }
     },
 
+    jscs: {
+        src: "./lib/*.js",
+        options: {
+            config: ".jscsrc",
+            esnext: true,
+            verbose: true,
+            requireCurlyBraces: [ "if" ]
+        }
+    },
+
     mochaTest: {
       options: {
         reporter: 'spec'

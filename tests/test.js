@@ -53,9 +53,9 @@ describe('ajaxer', function() {
   describe('#connect', function() {
     it('sends data where i tell it to', function(done) {
       var locations = [
-         "www.loc.com",
-         "www.2ndloc.com",
-         "www.3rdloc.com"
+        "www.loc.com",
+        "www.2ndloc.com",
+        "www.3rdloc.com"
       ];
       ajaxer.connect("POST", locations[0]);
       ajaxer.connect("POST", locations[1]);
@@ -70,15 +70,16 @@ describe('ajaxer', function() {
 
     it('applies the callback correctly', function(done) {
       var expectedValue = "this is a succesful thing",
-          actual;
-      ajaxer.connect("POST", "www.loc.com", {info:"data"}, function(message) {
+        actual;
+      ajaxer.connect("POST", "www.loc.com", {
+        info: "data"
+      }, function(message) {
         actual = message;
         done();
       });
 
       this.requests[0].respond(
-        200,
-        { },
+        200, {},
         expectedValue
       );
       //while (!actual);
@@ -98,9 +99,9 @@ describe('ajaxer', function() {
   describe('#post', function() {
     it('sends data where i tell it to', function(done) {
       var locations = [
-         "www.loc.com",
-         "www.2ndloc.com",
-         "www.3rdloc.com"
+        "www.loc.com",
+        "www.2ndloc.com",
+        "www.3rdloc.com"
       ];
       ajaxer.post(locations[0]);
       ajaxer.post(locations[1]);
@@ -123,8 +124,10 @@ describe('ajaxer', function() {
       ajaxer.get('www.fp.com', data, function(err, result) {
         done();
       });
+      ajaxer.get('www.fp.com');
 
       this.requests[0].url.should.be.equal('www.fp.com?foo=bar');
+      this.requests[1].url.should.be.equal('www.fp.com');
       done();
     });
   });
