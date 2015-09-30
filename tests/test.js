@@ -11,24 +11,6 @@ if (require) {
 chai.should();
 
 describe('ajaxer', function() {
-
-  // describe('UMD support', function() {
-  //   before(function() {
-  //     define = function() {};
-  //     exports = {};
-  //   });
-  //
-  //   after(function() {
-  //     delete define;
-  //     delete exports;
-  //   });
-  //
-  //   it('should define ajaxer', function() {
-  //     __dirname.split(path.sep).pop()
-  //   });
-  //
-  // });
-
   var
     xhr,
     requests;
@@ -94,6 +76,38 @@ describe('ajaxer', function() {
 
       aintNoCallerBacker.calledOnce.should.be.true;
     });
+
+    it('allows for function object to be passed', function() {
+      var aCallerBackObj = {
+        onSuccess: sinon.spy(),
+        onFail: sinon.spy()
+      };
+      ajaxer.connect("POST", "www.loc.com", aCallerBackObj);
+
+      this.requests[0].respond(200);
+
+      aCallerBackObj.onSuccess.calledOnce.should.be.true;
+      aCallerBackObj.onFail.calledOnce.should.be.false;
+    });
+
+    it('allows for some failblogging', function() {
+      var newVar,
+        aCallerBackObj = {
+          onSuccess: sinon.spy(),
+          onFail: sinon.spy()
+        };
+      ajaxer.connect("POST", "www.loc.com", aCallerBackObj);
+
+      this.requests[0].respond(201);
+
+      aCallerBackObj.onSuccess.calledOnce.should.be.false;
+      aCallerBackObj.onFail.calledOnce.should.be.true;
+    });
+
+    it('has a test testing for responseType', function() {
+      ajaxer.connect("POST", "www.loc.com", null, null, {"responseType":"json"});
+      ajaxer.connect("POST", "www.loc.com", null, null, {});
+    });
   });
 
   describe('#post', function() {
@@ -112,6 +126,20 @@ describe('ajaxer', function() {
       }
 
       done();
+    });
+
+    it('allows me to straight post json', function() {
+      var data = {
+        name: "eddie",
+        favColours: [
+          "blue",
+          "green",
+          "red",
+          "yellow"
+        ]
+      };
+      ajaxer.post("www.loc.com", JSON.stringify(data));
+
     });
   });
 
