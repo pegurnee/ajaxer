@@ -1,7 +1,7 @@
 # ajaxer
 
-[![Build Status](https://travis-ci.org/power-cosmic/ajaxer.svg?branch=master)](https://travis-ci.org/power-cosmic/ajaxer)
-[![Coverage Status](https://coveralls.io/repos/power-cosmic/ajaxer/badge.svg?branch=master&service=github)](https://coveralls.io/github/power-cosmic/ajaxer?branch=master)
+[![Build Status Badge]][Build Status]
+[![Coverage Status Badge]][Coverage Status]
 
 ## Overview
 
@@ -75,3 +75,8 @@ Perform an ajax request at the target `url`, optionally with the provided `data`
 ## License
 
 `ajaxer` is published under the MIT license.
+
+[Build Status Badge]: https://travis-ci.org/power-cosmic/ajaxer.svg?branch=master
+[Build Status]: https://travis-ci.org/power-cosmic/ajaxer
+[Coverage Status Badge]: https://coveralls.io/repos/power-cosmic/ajaxer/badge.svg?branch=master&service=github
+[Coverage Status]: https://coveralls.io/github/power-cosmic/ajaxer?branch=master
