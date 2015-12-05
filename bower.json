@@ -3,7 +3,7 @@
   "description": "a small library for ajax handling",
   "main": "./lib/ajaxer.js",
   "authors": [
-    "Eddie Gurnee <egurnee@emich.edu>"
+    "Eddie Gurnee <eddie.gurnee@gmail.com>"
   ],
   "license": "MIT",
   "keywords": [
