@@ -1,7 +1,7 @@
 # ajaxer
 
-[![Build Status](https://travis-ci.org/power-cosmic/ajaxer.svg?branch=master)](https://travis-ci.org/power-cosmic/ajaxer)
-[![Coverage Status](https://coveralls.io/repos/power-cosmic/ajaxer/badge.svg?branch=master&service=github)](https://coveralls.io/github/power-cosmic/ajaxer?branch=master)
+[![Build Status Badge]][Build Status]
+[![Coverage Status Badge]][Coverage Status]
 
 ## Overview
 
@@ -30,6 +30,16 @@ var someDifferentSettings = {
 ajaxer.connect('POST', 'probably_the_last_page.php', someDifferentSettings, function() {
   console.log('great success!');
 });
+
+var myFunctions = {
+  onSuccess: function(response) {
+    loadDataSomeWhere(JSON.parse(response));
+  },
+  onFail: function() {
+    alert('ABSOLUTE FAIL!');
+  }
+};
+ajaxer.get('fromSomewhere.asp', {content: 'request data'}, myFunctions, {'responseType': 'json'});
 ```
 
 ## Why-oh-why
@@ -44,19 +54,19 @@ Probably going to try to get npm to work. No promises though.
 
 ## API
 
-### get (*url*, [*data*, [*callback*]])
+### get (*url*[, *data*[, *callback*]])
 
 Perform an ajax GET request at the target `url`, optionally with the provided `data` (as an Object) and/or with a `callback` function that will operate on the response.
 
 **Note**: `data` or `callback` or both may be left empty if desired
 
-### post (*url*, [*data*, [*callback*]])
+### post (*url*[, *data*[, *callback*]])
 
 Perform an ajax POST request at the target `url`, optionally with the provided `data` (as an Object) and/or with a `callback` function that will operate on the response.
 
 **Note**: `data` or `callback` or both may be left empty if desired
 
-### connect (*method*, *url*, [*data*, [*callback*]])
+### connect (*method*, *url*[, *data*[, *callback*]])
 
 Perform an ajax request at the target `url`, optionally with the provided `data` (as an Object) and/or with a `callback` function that will operate on the response. The first parameter can be either the string `'POST'` or `'GET'`, nothing else can be accepted.
 
@@ -65,3 +75,8 @@ Perform an ajax request at the target `url`, optionally with the provided `data`
 ## License
 
 `ajaxer` is published under the MIT license.
+
+[Build Status Badge]: https://travis-ci.org/power-cosmic/ajaxer.svg?branch=master
+[Build Status]: https://travis-ci.org/power-cosmic/ajaxer
+[Coverage Status Badge]: https://coveralls.io/repos/power-cosmic/ajaxer/badge.svg?branch=master&service=github
+[Coverage Status]: https://coveralls.io/github/power-cosmic/ajaxer?branch=master

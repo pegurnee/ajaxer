@@ -54,13 +54,13 @@ module.exports = function(grunt) {
     },
 
     jscs: {
-        src: "./lib/*.js",
-        options: {
-            config: ".jscsrc",
-            esnext: true,
-            verbose: true,
-            requireCurlyBraces: [ "if" ]
-        }
+      src: "./lib/*.js",
+      options: {
+        config: ".jscsrc",
+        esnext: true,
+        verbose: true,
+        requireCurlyBraces: ["if"]
+      }
     },
 
     mochaTest: {
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['jshint']);
-  grunt.registerTask('build', ['uglify']);
+  grunt.registerTask('build', ['jscs', 'uglify']);
 
   grunt.registerTask('coverage', ['jshint', 'env:coverage',
     'instrument', 'mochaTest', 'storeCoverage', 'makeReport'
