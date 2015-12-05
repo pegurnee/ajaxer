@@ -1,0 +1,23 @@
+{
+  "name": "ajaxer",
+  "description": "a small library for ajax handling",
+  "main": "./lib/ajaxer.js",
+  "authors": [
+    "Eddie Gurnee <egurnee@emich.edu>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ajax",
+    "browser"
+  ],
+  "homepage": "https://github.com/power-cosmic/ajaxer",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
